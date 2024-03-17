@@ -65,13 +65,8 @@ void pop(t_sorted_list* list){
 
 }
 
-<<<<<<< HEAD
-void remove_by_index(t_sorted_list list,int index){
-    
-=======
 void remove_by_index(t_sorted_list* list,int index){
 
->>>>>>> 629b1829c2b38a77a31b0e5e73262428b438965b
 }
 
 void remove_by_element(t_sorted_list* list,int elem){
