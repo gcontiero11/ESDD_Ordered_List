@@ -3,18 +3,85 @@
 
 typedef struct{
     int* elements; 
-    int indexLastElement;
+    int numberOfElements;
     int size;
     int reallocCount;
 
-}orderedList;
+}t_sorted_list;
 
-int arrayDinamico(int tamanho){
-    int *array = (int*) malloc(sizeof(int) * tamanho);
+int allocateList(int size){
+    int *array = (int*) malloc(sizeof(int) * size);
     return array;
 }
 
-void adicionarValor(int array, int valor){
+// SIZE MANAGER
+int reallocSize(t_sorted_list list){
+    list.elements = realloc(list.elements,sizeof(int) * (list.size + ((list.size/2) * list.reallocCount)));
+}
+
+// ADD ELEMENTS
+int insertElement(t_sorted_list list, int elem){
+    int index = findPosition(list,elem);
+    freeIndexPosition(list,index);
+    return 1;
+}
+
+int findPosition(t_sorted_list list,int elem){
+    int index = 0;
+
+    return index;
+}
+
+int freeIndexPosition(t_sorted_list list, int index){
+    if (list.numberOfElements ==  list.size){
+        reallocSize(list);
+    }
+    int aux;
+    for (int i = list.numberOfElements - 1; i > index; i++){
+
+           
+        
+    }
+    
+} 
+
+
+// REMOVE ELEMENTS
+void pop(){
+
+}
+
+void remove_by_index(t_sorted_list list,int index){
+
+}
+
+void remove_by_element(t_sorted_list list,int elem){
+
+}
+
+void clear(t_sorted_list list){
+
+}
+
+
+// LIST INFOS
+void get(t_sorted_list list,int index){
+
+}
+
+void indexOf(t_sorted_list list,int elem){
+
+}
+
+void size(t_sorted_list list){
+
+}
+
+void is_Empty(t_sorted_list list){
+
+}
+
+void count(t_sorted_list list,int elem){
 
 }
 
@@ -40,21 +107,21 @@ void adicionarValor(int array, int valor){
 
 
 int main(){
-    int tamanho;
+    int size;
     char escolha;
     int numero;
 
-    printf("Digite o tamanho do vetor: ");
-    scanf("%d", &tamanho);
+    printf("Digite o size do vetor: ");
+    scanf("%d", &size);
 
-    // int *array = arrayDinamico(tamanho);
+    // int *array = arrayDinamico(size);
 
     while(escolha == 's'){
-        printf("Deseja adicionar um valor a lista? (s/n)");
+        printf("Deseja adicionar um value a lista? (s/n)");
         scanf(" %c", &escolha);
         switch(escolha){
             case 's':
-                printf("Digite um valor: ");
+                printf("Digite um value: ");
                 scanf("%d", &numero);
                 // adicionarValor(array, numero);
                 break;
@@ -64,7 +131,7 @@ int main(){
                 break;
 
             default:
-                printf("ERRO: valor invalido inserido");
+                printf("ERRO: value invalido inserido");
         }
     }
 
