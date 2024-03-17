@@ -9,93 +9,105 @@ typedef struct{
 
 }t_sorted_list;
 
-int allocateList(int size){
-    int *array = (int*) malloc(sizeof(int) * size);
-    return array;
+int setSize(t_sorted_list* list, int newSize){
+    list->size = newSize;
 }
 
-// SIZE MANAGER
-int reallocSize(t_sorted_list* list){
-    list->elements = realloc(list->elements,sizeof(int) * (list->size + ((list->size/2) * list->reallocCount)));
-    list->reallocCount++;
+int allocateList(t_sorted_list* list,int size){
+    list->elements = (int*) malloc(sizeof(int) * size);
     return 1;
 }
 
-// ADD ELEMENTS
-int insertElement(t_sorted_list* list, int elem){
-    int index = findPosition(list,elem);
-    freeIndexPosition(list,index);
-    return 1;
-}
-
-int findPosition(t_sorted_list* list,int elem){
-    
-}
-
-int freeIndexPosition(t_sorted_list* list, int index){
-    if (list->numberOfElements ==  list->size){
-        reallocSize(list);
-    }
-    int aux;
-    for (int i = list->numberOfElements - 1; i > index; i++){
-
-    }
-    
-} 
-
-int updateValue(t_sorted_list* list, int elem, int index){
-    list->elements[index] = elem;
+t_sorted_list* allocateStruct(int size){
+    t_sorted_list* list = malloc(sizeof(t_sorted_list));
+    allocateList(list,size);
+    list->numberOfElements = 0;
+    list->reallocCount = 1;
+    list->size = size;
     return list;
 }
 
 
-
-// REMOVE ELEMENTS
-void pop(){
-
-}
-
-void remove_by_index(t_sorted_list* list,int index){
-    
-}
-
-void remove_by_element(t_sorted_list* list,int elem){
-
-}
-
-void clear(t_sorted_list* list){
-    clear(list);
+// SIZE MANAGER
+int reallocSize(t_sorted_list* list){
+    int newSize = list->size + ((list->size/2) * list->reallocCount);
+    list->elements = realloc(list->elements,sizeof(int) * (newSize));
+    list->reallocCount++;
+    setSize(list,newSize);
     return 1;
 }
 
-// LIST INFOS
-void get(t_sorted_list* list,int index){
-    if(index > list->numberOfElements) return 0;
-    for(int count = 0; count < list->numberOfElements; count++){
+// // ADD ELEMENTS
+// int insertElement(t_sorted_list* list, int elem){
+//     int index = findPosition(list,elem);
+//     freeIndexPosition(list,index);
+//     return 1;
+// }
+ 
+// int freeIndexPosition(t_sorted_list* list, int index){
+//     if (list->numberOfElements ==  list->size){
+//         reallocSize(list);
+//     }
+//     int aux;
+//     for (int i = list->numberOfElements - 1; i > index; i++){
+
+//     }
+    
+// } 
+
+// int updateValue(t_sorted_list* list, int elem, int index){
+//     list->elements[index] = elem;
+//     return list;
+// }
+
+
+
+// // REMOVE ELEMENTS
+// void pop(){
+
+// }
+
+// void remove_by_index(t_sorted_list* list,int index){
+    
+// }
+
+// void remove_by_element(t_sorted_list* list,int elem){
+
+// }
+
+// void clear(t_sorted_list* list){
+//     clear(list);
+//     return 1;
+// }
+
+// // LIST INFOS
+// void get(t_sorted_list* list,int index){
+//     if(index > list->numberOfElements) return 0;
+//     for(int count = 0; count < list->numberOfElements; count++){
         
-    }
-}
+//     }
+// }
 
-void indexOf(t_sorted_list* list,int elem){
-    int index = 0;
-    for(int i = 0; i < list->numberOfElements; i++){
-        if(list->elements[i] == elem) return index;
-        index++;
-    }
-    return index;
-}
+// void indexOf(t_sorted_list* list,int elem){
+//     int index = 0;
+//     for(int i = 0; i < list->numberOfElements; i++){
+//         if(list->elements[i] == elem) return index;
+//         index++;
+//     }
+//     return index;
+// }
 
-void size(t_sorted_list* list){
+// void size(t_sorted_list* list){
 
-}
+// }
 
-void is_Empty(t_sorted_list* list){
+// void is_Empty(t_sorted_list* list){
 
-}
+// }
 
-void count(t_sorted_list* list,int elem){
+// void count(t_sorted_list* list,int elem){
 
-}
+// }
 
 
 
@@ -119,5 +131,10 @@ void count(t_sorted_list* list,int elem){
 
 
 int main(){
-
+    t_sorted_list* sortedList = allocateStruct(30);
+    printf("%d\n",sortedList->numberOfElements);
+    printf("%d\n",sortedList->reallocCount);
+    printf("%d\n",sortedList->size);
+    reallocSize(sortedList);
+    printf("%d\n",sortedList->size);
 }
