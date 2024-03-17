@@ -9,6 +9,7 @@ typedef struct{
 
 }t_sorted_list;
 
+// CREATE FUNCTIONS
 int setSize(t_sorted_list* list, int newSize){
     list->size = newSize;
 }
@@ -37,77 +38,75 @@ int reallocSize(t_sorted_list* list){
     return 1;
 }
 
-// // ADD ELEMENTS
-// int insertElement(t_sorted_list* list, int elem){
-//     int index = findPosition(list,elem);
-//     freeIndexPosition(list,index);
-//     return 1;
-// }
- 
-// int freeIndexPosition(t_sorted_list* list, int index){
-//     if (list->numberOfElements ==  list->size){
-//         reallocSize(list);
-//     }
-//     int aux;
-//     for (int i = list->numberOfElements - 1; i > index; i++){
+// ADD ELEMENTS
+int freeIndexPosition(t_sorted_list* list, int index){
+    if (list->numberOfElements ==  list->size){
+        reallocSize(list);
+    }
+    int aux;
+    for (int i = list->numberOfElements; i > index; i--){
+        list->elements[i] = list->elements[i-1];
+    }
+    list->elements[index] = 0;
+    return 1;
+}
+int findPositionToInsert(t_sorted_list* list,int elem){
 
-//     }
-    
-// } 
+}
 
-// int updateValue(t_sorted_list* list, int elem, int index){
-//     list->elements[index] = elem;
-//     return list;
-// }
-
-
+int insertElement(t_sorted_list* list, int elem){
+    int index = findPositionToInsert(list,elem);
+    freeIndexPosition(list,index);
+    list->elements[index] = elem;
+    return 1;
+}
 
 // // REMOVE ELEMENTS
-// void pop(){
+void pop(){
 
-// }
+}
 
-// void remove_by_index(t_sorted_list* list,int index){
+void remove_by_index(t_sorted_list* list,int index){
     
-// }
+}
 
-// void remove_by_element(t_sorted_list* list,int elem){
+void remove_by_element(t_sorted_list* list,int elem){
 
-// }
+}
 
-// void clear(t_sorted_list* list){
-//     clear(list);
-//     return 1;
-// }
+void clear(t_sorted_list* list){
+    clear(list);
+    return 1;
+}
 
-// // LIST INFOS
-// void get(t_sorted_list* list,int index){
-//     if(index > list->numberOfElements) return 0;
-//     for(int count = 0; count < list->numberOfElements; count++){
+// LIST INFOS
+void get(t_sorted_list* list,int index){
+    if(index > list->numberOfElements) return 0;
+    for(int count = 0; count < list->numberOfElements; count++){
         
-//     }
-// }
+    }
+}
 
-// void indexOf(t_sorted_list* list,int elem){
-//     int index = 0;
-//     for(int i = 0; i < list->numberOfElements; i++){
-//         if(list->elements[i] == elem) return index;
-//         index++;
-//     }
-//     return index;
-// }
+void indexOf(t_sorted_list* list,int elem){
+    int index = 0;
+    for(int i = 0; i < list->numberOfElements; i++){
+        if(list->elements[i] == elem) return index;
+        index++;
+    }
+    return index;
+}
 
-// void size(t_sorted_list* list){
+void size(t_sorted_list* list){
 
-// }
+}
 
-// void is_Empty(t_sorted_list* list){
+void is_Empty(t_sorted_list* list){
 
-// }
+}
 
-// void count(t_sorted_list* list,int elem){
-
-// }
+void count(t_sorted_list* list,int elem){
+    return list->numberOfElements;
+}
 
 
 
