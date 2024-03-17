@@ -52,7 +52,7 @@ void pop(){
 }
 
 void remove_by_index(t_sorted_list list,int index){
-
+    
 }
 
 void remove_by_element(t_sorted_list list,int elem){
@@ -107,32 +107,5 @@ void count(t_sorted_list list,int elem){
 
 
 int main(){
-    int size;
-    char escolha;
-    int numero;
 
-    printf("Digite o size do vetor: ");
-    scanf("%d", &size);
-
-    // int *array = arrayDinamico(size);
-
-    while(escolha == 's'){
-        printf("Deseja adicionar um value a lista? (s/n)");
-        scanf(" %c", &escolha);
-        switch(escolha){
-            case 's':
-                printf("Digite um value: ");
-                scanf("%d", &numero);
-                // adicionarValor(array, numero);
-                break;
-
-            case 'n':
-                printf("Programa encerrado");
-                break;
-
-            default:
-                printf("ERRO: value invalido inserido");
-        }
-    }
-
-    printf("%d", numero);
+}
