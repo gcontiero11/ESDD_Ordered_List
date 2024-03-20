@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "listaEncadeada.h"
+
 
 typedef struct{
     int* elements; 
@@ -104,36 +106,7 @@ void is_Empty(t_sorted_list* list){
 
 }
 
+
 void count(t_sorted_list* list,int elem){
     return list->numberOfElements;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-int main(){
-    t_sorted_list* sortedList = allocateStruct(30);
-    printf("%d\n",sortedList->numberOfElements);
-    printf("%d\n",sortedList->reallocCount);
-    printf("%d\n",sortedList->size);
-    reallocSize(sortedList);
-    printf("%d\n",sortedList->size);
 }
