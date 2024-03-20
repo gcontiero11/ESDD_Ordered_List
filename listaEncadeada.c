@@ -7,7 +7,7 @@ typedef struct{
     int size;
     int reallocCount;
 
-}t_sorted_list;
+} t_sorted_list;
 
 // CREATE FUNCTIONS
 int setSize(t_sorted_list* list, int newSize){
@@ -75,7 +75,7 @@ void remove_by_element(t_sorted_list* list,int elem){
 }
 
 void clear(t_sorted_list* list){
-    clear(list);
+    clear(list->elements);
     return 1;
 }
 
