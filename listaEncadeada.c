@@ -45,6 +45,10 @@ int freeIndexPosition(t_sorted_list* list, int index){
     if (list->numberOfElements ==  list->size){
         reallocSize(list);
     }
+    if (index==list->numberOfElements){
+        return 1;
+    }
+    
     int aux;
     for (int i = list->numberOfElements; i > index; i--){
         list->elements[i] = list->elements[i-1];
@@ -53,7 +57,18 @@ int freeIndexPosition(t_sorted_list* list, int index){
     return 1;
 }
 int findPositionToInsert(t_sorted_list* list,int elem){
-
+    if (elem < list->elements[0]){
+        return 0;
+    }
+    if (elem>list->elements[list->numberOfElements-1]){
+        return list->numberOfElements;
+    }
+    for (int i = 1; i < list->numberOfElements; i++){
+        if (elem>=list->elements[i-1] && elem<=list->elements[i]){
+            return i;
+        }
+    }
+    
 }
 
 int insertElement(t_sorted_list* list, int elem){
@@ -68,8 +83,15 @@ void pop(){
 
 }
 
-void remove_by_index(t_sorted_list* list,int index){
-    
+int remove_by_index(t_sorted_list* list,int index){
+    if (index < 0 || index > list->numberOfElements-1){
+        return 0;
+    }
+    for (int i = index; i < list->numberOfElements - 1; i++){
+        list->elements[i] = list->elements[i+1];
+    }
+    list->numberOfElements--;
+    return 1;
 }
 
 void remove_by_element(t_sorted_list* list,int elem){
