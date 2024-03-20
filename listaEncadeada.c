@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "listaEncadeada.h"
+
 
 typedef struct{
     int* elements; 
@@ -82,30 +84,5 @@ void is_Empty(t_sorted_list list){
 }
 
 void count(t_sorted_list list,int elem){
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-int main(){
 
 }
