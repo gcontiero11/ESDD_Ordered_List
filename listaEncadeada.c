@@ -1,26 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
-// #include "listaEncadeada.h"
-
-typedef struct{
-    int* elements; 
-    int numberOfElements;
-    int size;
-    int reallocCount;
-} t_sorted_list;
+#include "listaEncadeada.h"
 
 // CREATE FUNCTIONS
-int setSize(t_sorted_list* list, int newSize){ // check
+int setSize(t_sorted_list* list, int newSize){ 
     list->size = newSize;
     return 1;
 }
 
-int allocateList(t_sorted_list* list,int size){  // check
+int allocateList(t_sorted_list* list,int size){  
     list->elements = (int*) malloc(sizeof(int) * size);
     return 1;
 }
 
-t_sorted_list* allocateStruct(int size){  // check
+t_sorted_list* allocateStruct(int size){  
     t_sorted_list* list = malloc(sizeof(t_sorted_list));
     allocateList(list,size);
     list->numberOfElements = 0;
@@ -30,7 +23,7 @@ t_sorted_list* allocateStruct(int size){  // check
 }
 
 // SIZE MANAGER
-int reallocSize(t_sorted_list* list){  // check
+int reallocSize(t_sorted_list* list){  
     int newSize = list->size + ((list->size/2) * list->reallocCount);
     list->elements = realloc(list->elements,sizeof(int) * (newSize));
     list->reallocCount++;
@@ -39,7 +32,7 @@ int reallocSize(t_sorted_list* list){  // check
 }
 
 // ADD ELEMENTS
-int freeIndexPosition(t_sorted_list* list, int index){  // check
+int freeIndexPosition(t_sorted_list* list, int index){  
     if (list->numberOfElements ==  list->size){
         reallocSize(list);
     }
@@ -53,7 +46,7 @@ int freeIndexPosition(t_sorted_list* list, int index){  // check
     return 1;
 }
 
-int findPositionToInsert(t_sorted_list* list, int elem){  // check
+int findPositionToInsert(t_sorted_list* list, int elem){  
     if (elem < list->elements[0]){
         return 0;
     }
@@ -68,7 +61,7 @@ int findPositionToInsert(t_sorted_list* list, int elem){  // check
     return -1;
 }
 
-int insertElement(t_sorted_list* list, int elem){  // check
+int insertElement(t_sorted_list* list, int elem){  
     int index = findPositionToInsert(list,elem);
     freeIndexPosition(list,index);
     list->elements[index] = elem;
@@ -77,12 +70,12 @@ int insertElement(t_sorted_list* list, int elem){  // check
 }
 
 // REMOVE ELEMENTS
-int pop(t_sorted_list *list) {  // check
+int pop(t_sorted_list *list) {  
   list->numberOfElements--;
   return 1;
 }
 
-int removeByIndex(t_sorted_list* list, int index){  // check
+int removeByIndex(t_sorted_list* list, int index){  
     if (index < 0 || index > list->numberOfElements-1){
         return 0;
     }
@@ -93,7 +86,7 @@ int removeByIndex(t_sorted_list* list, int index){  // check
     return 1;
 }
 
-int removeElement(t_sorted_list* list, int elem){  // check
+int removeElement(t_sorted_list* list, int elem){  
     for(int i = 0; i < list->numberOfElements; i++){
         if(list->elements[i] == elem) {
            for (int j = i; j < list->numberOfElements - 1; j++) {
@@ -106,13 +99,13 @@ int removeElement(t_sorted_list* list, int elem){  // check
     return 0;
 }
 
-int clear(t_sorted_list* list){ // check
+int clear(t_sorted_list* list){ 
     list->numberOfElements = 0;
     return 1;
 }
 
 // LIST INFOS
-int getNumber(t_sorted_list* list, int index,int* number){ // check
+int getNumber(t_sorted_list* list, int index,int* number){ 
     if(index > list->numberOfElements) return 0;
     for(int count = 0; count < list->numberOfElements; count++){
         if(count == index) {
@@ -124,7 +117,7 @@ int getNumber(t_sorted_list* list, int index,int* number){ // check
     return -404;
 }
 
-int indexOf(t_sorted_list* list,int elem){ // check
+int indexOf(t_sorted_list* list,int elem){ 
     for(int index = 0; index < list->numberOfElements; index++){
         if(list->elements[index] == elem) return index;
     }
@@ -161,43 +154,4 @@ void printList(t_sorted_list *list){
         printf("%d ", list->elements[i]);
     }
     printf("\n");
-}
-
-int main(){
-    t_sorted_list *list;
-    list = allocateStruct(5);
-
-    insertElement(list, 10);
-    
-    insertElement(list, 5);
-    insertElement(list, 7);
-    printf("PASSOU\n");
-    insertElement(list, 9);
-    insertElement(list, 3);
-    insertElement(list, 1);
-    insertElement(list, 20);
-    insertElement(list, -1);
-
-    printList(list);
-
-    pop(list);
-    printList(list);
-
-    removeByIndex(list, 2);
-    printList(list);
-
-    removeElement(list, 7);
-    printList(list);
-    int* number;
-    printf("%d\n", getNumber(list, 3,number));
-    printf("%d\n",*number);
-    printf("%d\n",indexOf(list,28));
-    printf("%d\n",size(list));
-    insertElement(list,1);
-    printList(list);
-    printf("%d\n",count(list,1));
-    printf("%d\n",count(list,11));
-    printf("%d\n",isEmpty(list));
-    printf("%d\n",clear(list));
-    printf("%d\n",listDestroyer(list));
 }
