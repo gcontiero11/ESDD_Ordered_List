@@ -64,8 +64,8 @@ int insertElement(t_sorted_list* list, int elem){
 }
 
 // // REMOVE ELEMENTS
-void pop(){
-
+int pop(t_sorted_list* list, int numberOfElements){
+    return list->elements[numberOfElements--];
 }
 
 void remove_by_index(t_sorted_list* list,int index){
