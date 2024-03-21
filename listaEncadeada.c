@@ -94,41 +94,37 @@ int remove_by_index(t_sorted_list* list,int index){
     return 1;
 }
 
-void remove_by_element(t_sorted_list* list,int elem){
-
+int remove_by_element(t_sorted_list* list, int elem){
+    for(int i = 0; i < list->numberOfElements, i++){
+    }
+    return 1;
 }
 
-void clear(t_sorted_list* list){
+int clear(t_sorted_list* list){
     clear(list->elements);
     return 1;
 }
 
 // LIST INFOS
-void get(t_sorted_list* list,int index){
+int getNumber(t_sorted_list* list,int index){
     if(index > list->numberOfElements) return 0;
     for(int count = 0; count < list->numberOfElements; count++){
-        
+        if(count == index) return list->elements[count];
     }
 }
 
-void indexOf(t_sorted_list* list,int elem){
-    int index = 0;
-    for(int i = 0; i < list->numberOfElements; i++){
+int indexOf(t_sorted_list* list,int elem){
+    for(int index = 0; i < list->numberOfElements; index++){
         if(list->elements[i] == elem) return index;
-        index++;
     }
-    return index;
+    return -1;
 }
 
-void size(t_sorted_list* list){
-
+int size(t_sorted_list* list){
+    return list->numberOfElements
 }
 
-void is_Empty(t_sorted_list* list){
-
-}
-
-
-void count(t_sorted_list* list,int elem){
-    return list->numberOfElements;
+int is_Empty(t_sorted_list* list){
+    if(list->numberOfElements == 0) return 1;
+    return 0;
 }
