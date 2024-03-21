@@ -46,7 +46,6 @@ int freeIndexPosition(t_sorted_list* list, int index){  // check
     if (index == list->numberOfElements){
         return 1;
     }
-
     for (int i = list->numberOfElements; i > index; i--){
         list->elements[i] = list->elements[i-1];
     }
@@ -107,39 +106,41 @@ int removeElement(t_sorted_list* list, int elem){  // check
     return 0;
 }
 
-int clear(t_sorted_list* list){
-    free(list->elements);
+int clear(t_sorted_list* list){ // check
+    list->numberOfElements = 0;
     return 1;
 }
 
 // LIST INFOS
-int getNumber(t_sorted_list* list, int index){
+int getNumber(t_sorted_list* list, int index,int* number){ // check
     if(index > list->numberOfElements) return 0;
     for(int count = 0; count < list->numberOfElements; count++){
-        if(count == index) return list->elements[count];
+        if(count == index) {
+            *number =  list->elements[count]; 
+            return 1;
+        }
     }
 
-    return 404;
+    return -404;
 }
 
-int indexOf(t_sorted_list* list,int elem){
-  int i = 0;
-    for(int index = 0; i < list->numberOfElements; index++){
-        if(list->elements[i] == elem) return index;
+int indexOf(t_sorted_list* list,int elem){ // check
+    for(int index = 0; index < list->numberOfElements; index++){
+        if(list->elements[index] == elem) return index;
     }
     return -1;
 }
 
-int size(t_sorted_list* list){
+int size(t_sorted_list* list){ //check
     return list->numberOfElements;
 }
 
-int isEmpty(t_sorted_list* list){
+int isEmpty(t_sorted_list* list){ //check
     if(list->numberOfElements == 0) return 1;
     return 0;
 }
 
-int count(t_sorted_list *list, int elem){
+int count(t_sorted_list *list, int elem){ //check
     int contador = 0;
     for (int i = 0; i < list->numberOfElements; i++){
         if (elem == list->elements[i]){
@@ -147,6 +148,12 @@ int count(t_sorted_list *list, int elem){
         }
     }
     return contador;
+}
+
+int listDestroyer(t_sorted_list *list){
+    free(list->elements);
+    free(list);
+    return 1;
 }
 
 void printList(t_sorted_list *list){
@@ -181,6 +188,16 @@ int main(){
 
     removeElement(list, 7);
     printList(list);
-
-    printf("%d\n", getNumber(list, 28));
+    int* number;
+    printf("%d\n", getNumber(list, 3,number));
+    printf("%d\n",*number);
+    printf("%d\n",indexOf(list,28));
+    printf("%d\n",size(list));
+    insertElement(list,1);
+    printList(list);
+    printf("%d\n",count(list,1));
+    printf("%d\n",count(list,11));
+    printf("%d\n",isEmpty(list));
+    printf("%d\n",clear(list));
+    printf("%d\n",listDestroyer(list));
 }
