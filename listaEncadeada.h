@@ -9,6 +9,12 @@ typedef struct{
 
 } t_sorted_list;
 
-
+int clear(t_sorted_list* list);
+int getNumber(t_sorted_list* list, int index);
+int indexOf(t_sorted_list* list, int elem);
+int size(t_sorted_list* list);
+int isEmpty(t_sorted_list* list);
+int removeElement(t_sorted_list* list, int elem);
+int pop(t_sorted_list *list, int numberOfElements);
 
 #endif
